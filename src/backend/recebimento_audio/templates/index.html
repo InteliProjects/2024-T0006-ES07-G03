@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captura de Áudio</title>
+    <style>
+        body, html {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #e5e5e5;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            padding: 10px;
+            background-color: #f1f0f0;
+            border-radius: 5px;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            background-color: #dcf8c6;
+            align-self: flex-end;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        button, .audio-container {
+            margin: 5px 0;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button.recording {
+            background-color: #D9534F;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container" id="chatContainer">
+    </div>
+    <div class="container">
+        <button id="toggleCapture">Iniciar Captura</button>
+        <div id="audioContainer" class="audio-container"></div>
+    </div>
+    <script>
+        let capturing = false;
+        let mediaRecorder;
+        let audioChunks = [];
+
+        document.getElementById('toggleCapture').addEventListener('click', function() {
+            if (!capturing) {
+                navigator.mediaDevices.getUserMedia({ audio: true })
+                    .then(stream => {
+                        mediaRecorder = new MediaRecorder(stream);
+                        audioChunks = [];
+
+                        mediaRecorder.ondataavailable = event => {
+                            audioChunks.push(event.data);
+                        };
+
+                        mediaRecorder.onstop = () => {
+                            const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                            const audioUrl = URL.createObjectURL(audioBlob);
+
+                            // Cria um elemento de áudio e adiciona ao chat container
+                            const messageDiv = document.createElement('div');
+                            messageDiv.classList.add('message', 'user-message');
+                            const audioElement = document.createElement('audio');
+                            audioElement.src = audioUrl;
+                            audioElement.controls = true;
+                            messageDiv.appendChild(audioElement);
+                            document.getElementById('chatContainer').appendChild(messageDiv);
+
+                            // Envia automaticamente o áudio após a gravação
+                            enviarAudio(audioBlob);
+
+                            document.getElementById('toggleCapture').textContent = 'Iniciar Captura';
+                            document.getElementById('toggleCapture').classList.remove('recording');
+                            capturing = false;
+                        };
+
+                        mediaRecorder.start();
+                        capturing = true;
+                        this.textContent = 'Parar Captura';
+                        this.classList.add('recording');
+                    }).catch(err => {
+                        console.error('Erro ao acessar o microfone:', err);
+                    });
+            } else {
+                mediaRecorder.stop();
+            }
+        });
+
+        function enviarAudio(audioBlob) {
+            const formData = new FormData();
+            formData.append('audio', audioBlob, 'audio.wav');
+            fetch('/upload', {
+                method: 'POST',
+                body: formData,
+            }).then(response => {
+                if (response.ok) {
+                    console.log('Áudio enviado com sucesso!');
+                    // adicionar a resposta da API ao chat
+                } else {
+                    console.error('Erro ao enviar áudio:', response);
+                }
+            }).catch(err => {
+                console.error('Erro ao enviar áudio:', err);
+            });
+        }
+    </script>
+</body>
+</html>

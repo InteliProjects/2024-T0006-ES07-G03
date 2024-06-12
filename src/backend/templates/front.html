@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="back.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2> Transcrever audios </h2>
+
+    <input type="file" id="audioFile" accept="audio/mp3, audio/opus, audio/*, video/mp4" /><br><br>
+    <button onclick="uploadAudio()">Enviar Áudio</button><br><br>
+    <div id="response">Resposta aqui</div>
+    <div id="loading" style="display: none;">
+        <div class="loader"></div>
+    </div>
+
+</body>
+</html>

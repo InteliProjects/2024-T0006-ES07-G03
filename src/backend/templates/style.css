@@ -1,0 +1,89 @@
+/* Reset básico para remover as margens e paddings padrões */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilização geral do corpo da página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Estilização do título */
+h2 {
+    color: #444;
+    text-align: center;
+    font-size: 24px; /* Ajuste o tamanho da fonte conforme necessário */
+    margin-bottom: 20px; /* Espaço abaixo do título */
+}
+
+/* Estilização do input de arquivo */
+input[type="file"] {
+    border: 1px solid #ccc;
+    display: block;
+    padding: 10px 15px;
+    width: 100%;
+    margin: auto; /* Centraliza o input na página */
+    max-width: 400px; /* Define a largura máxima */
+}
+
+/* Estilização do botão */
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    margin: 20px auto; /* Centraliza o botão e adiciona espaçamento */
+    max-width: 400px; /* Define a largura máxima */
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Estilização da resposta */
+#response {
+    margin: 20px auto; /* Centraliza a div na página e adiciona espaçamento */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    min-height: 50px;
+    width: 100%;
+    max-width: 400px; /* Define a largura máxima */
+    text-align: center; /* Centraliza o texto dentro da div */
+}
+
+/* Estilização da animação de carregamento */
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+    margin: auto; /* Centraliza o loader na página */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Estilização do container de carregamento para exibição */
+#loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100%; /* Garante que o container ocupe a largura total */
+}

@@ -1,0 +1,8 @@
+
+src/genAI/.env
+
+src/genAI/app/.env.bak
+
+src/genAI/app/.env
+
+src/frontend/node_modules/
