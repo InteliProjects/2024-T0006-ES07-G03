@@ -17,9 +17,6 @@
 - <a href="https://www.linkedin.com/in/yago-ara%C3%BAjo-do-vale-moreira-461816247/">Yago Araújo</a>
 - <a href="https://www.linkedin.com/in/joao-victor-montagna-4bb3a4247/">João Victor</a>
 
-
-(...)
-
 ## 👩‍🏫 Professores:
 ### Orientador(a) 
 - Reginaldo Arakaki
