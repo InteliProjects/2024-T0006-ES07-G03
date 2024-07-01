@@ -32,7 +32,9 @@
 
 ## 📜 Descrição
 
-Adicionar descrição do projeto conforme o TAPI.
+Para abordar a necessidade da Sambatech de aumentar o engajamento dos usuários na plataforma de vídeo, desenvolvemos um chatbot avançado, projetado para facilitar a interação dos usuários com a plataforma de maneira mais intuitiva e envolvente. A Sambatech buscava maneiras de aumentar a participação dos usuários e proporcionar uma experiência mais personalizada e dinâmica.
+
+O chatbot foi desenvolvido utilizando tecnologias de Processamento de Linguagem Natural (NLP) e Machine Learning, permitindo uma compreensão avançada das consultas e interações dos usuários. Integrado à plataforma de vídeo da Sambatech, o chatbot é capaz de responder a perguntas frequentes, fornecer recomendações personalizadas de vídeos com base no histórico de visualização do usuário e destacar novos conteúdos e tendências emergentes.
 
 ## 📁 Estrutura de pastas
 
